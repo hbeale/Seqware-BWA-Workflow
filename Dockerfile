@@ -15,7 +15,7 @@ RUN apt-get -m update
 RUN apt-get install -y apt-utils tar git curl nano wget dialog net-tools build-essential time tabix
 
 RUN mount -o remount,rw /
-RUN usermod -u $USER seqware
+RUN usermod -u 1111 seqware
 RUN reboot
 
 COPY src /home/seqware/Seqware-BWA-Workflow/src
