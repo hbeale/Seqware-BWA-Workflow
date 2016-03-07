@@ -50,6 +50,7 @@ my $metadata_str = join ",", @metadata;
 my $download_str = join ",", @download;
 
 # SYMLINK REF FILES
+run("sudo su seqware");
 run("mkdir -p /home/seqware/Seqware-BWA-Workflow/target/Workflow_Bundle_BWA_".$wfversion."_SeqWare_1.1.1/Workflow_Bundle_BWA/".$wfversion."/data/reference/bwa-0.6.2/");
 run("ln -s $reference_gz /home/seqware/Seqware-BWA-Workflow/target/Workflow_Bundle_BWA_".$wfversion."_SeqWare_1.1.1/Workflow_Bundle_BWA/".$wfversion."/data/reference/bwa-0.6.2/genome.fa.gz");
 run("ln -s $reference_gz_fai /home/seqware/Seqware-BWA-Workflow/target/Workflow_Bundle_BWA_".$wfversion."_SeqWare_1.1.1/Workflow_Bundle_BWA/".$wfversion."/data/reference/bwa-0.6.2/genome.fa.gz.fai");
