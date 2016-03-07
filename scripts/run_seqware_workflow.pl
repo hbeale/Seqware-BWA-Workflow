@@ -65,7 +65,7 @@ system("ls -lth /home/seqware/Seqware-BWA-Workflow/target/Workflow_Bundle_BWA_".
 
 # MAKE CONFIG
 # the default config is the workflow_local.ini and has most configs ready to go
-my $config = <<'END_MESSAGE';
+my $config = "
 # these make sure S3 and GNOS are not used
 useGNOS=true
 use_gtdownload=false
@@ -89,7 +89,7 @@ output_dir=/
 
 # key=output_prefix:type=text:display=F:display_name=The output_prefix is a convention and used to specify the root of the absolute output path
 output_prefix=$cwd/
-END_MESSAGE
+";
 
 open OUT, ">workflow.ini" or die;
 print OUT $config;
