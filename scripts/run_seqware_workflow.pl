@@ -102,8 +102,8 @@ my $path = `ls -1t /datastore/ | grep 'oozie-' | head -1`;
 chomp $path;
 
 # MOVE THESE TO THE RIGHT PLACE
-system("mv /datastore/$path/data/merged_output.bam* /var/spool/cwl");
-system("mv /datastore/$path/data/merged_output.unmapped.bam* /var/spool/cwl");
+system("sudo mv /datastore/$path/data/merged_output.bam* $cwd");
+system("sudo mv /datastore/$path/data/merged_output.unmapped.bam* $cwd");
 
 # RETURN RESULT
 exit($error);
