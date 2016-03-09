@@ -17,12 +17,17 @@ use Cwd;
 # TODO:
 # this is a very hard-coded script and assumes it's running inside the Docker container
 
+chdir '/home/seqware/Seqware-BWA-Workflow';
+
 my @files;
 my ($reference_gz, $reference_gz_fai, $reference_gz_amb, $reference_gz_ann, $reference_gz_bwt, $reference_gz_pac, $reference_gz_sa);
 my $cwd = cwd();
 
 # workflow version
 my $wfversion = "2.6.7";
+
+my $outdir = $cwd;
+my $cwl;
 
 GetOptions (
   "file=s"   => \@files,
@@ -33,9 +38,14 @@ GetOptions (
   "reference-gz-bwt=s" => \$reference_gz_bwt,
   "reference-gz-pac=s" => \$reference_gz_pac,
   "reference-gz-sa=s" => \$reference_gz_sa,
+  "cwl-compatible" => \$cwl
 )
 # TODO: need to add all the new params, then symlink the ref files to the right place
  or die("Error in command line arguments\n");
+
+if ($cwl) {
+    $outdir = "/var/spool/cwl";
+}
 
 # PARSE OPTIONS
 my $file_str = join ",", @files;
@@ -102,8 +112,8 @@ my $path = `ls -1t /datastore/ | grep 'oozie-' | head -1`;
 chomp $path;
 
 # MOVE THESE TO THE RIGHT PLACE
-system("sudo mv /datastore/$path/data/merged_output.bam* $cwd");
-system("sudo mv /datastore/$path/data/merged_output.unmapped.bam* $cwd");
+system("sudo mv /datastore/$path/data/merged_output.bam* $outdir");
+system("sudo mv /datastore/$path/data/merged_output.unmapped.bam* $outdir");
 
 # RETURN RESULT
 exit($error);

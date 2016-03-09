@@ -86,6 +86,13 @@ inputs:
       position: 8
       prefix: "--reference-gz-sa"
 
+  - id: "#cwl_compatible"
+    type: null
+    description: 'flag to run in cwl compatibility mode'
+    inputBinding:
+        position: 9
+        prefix: "--cwl-compatible"
+
 outputs:
   - id: "#merged_output_bam"
     type: File
